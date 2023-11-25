@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-3xl underline bg-green-500'>Coucou le front</h1>
+      <h1 className='text-3xl underline bg-dark'>Coucou le front</h1>
     </>
   )
 }
