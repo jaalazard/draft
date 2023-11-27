@@ -55,7 +55,10 @@ function App() {
       {thisCocktail && (
         <div>
           <h2 className="text-3xl bg-red-500">{thisCocktail.name}</h2>
-          <p>{thisCocktail.total_kcal}</p>
+          <p>kcal :{thisCocktail.total_kcal}</p>
+          <p>degree :{thisCocktail.total_degree}</p>
+          <p>flavour :{thisCocktail.final_flavour}</p>
+
           {/* Affichez d'autres détails du cocktail ici */}
         </div>
       )}

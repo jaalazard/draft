@@ -1,8 +1,27 @@
 const database = require("../database");
 
 const getCocktails = (req, res) => {
+  let sql = "select * from cocktail";
+  const sqlValues = [];
+
+  if (req.query.final_flavour !== undefined) {
+    sql +=
+      sqlValues.length < 1
+        ? " WHERE final_flavour = ?"
+        : " AND final_flavour = ?";
+    sqlValues.push(req.query.final_flavour);
+  }
+
+  if (req.query.name !== undefined) {
+    sql +=
+      sqlValues.length < 1
+        ? " WHERE name = ?"
+        : " AND name = ?";
+    sqlValues.push(req.query.name);
+  }
+
   database
-    .query("SELECT * FROM cocktail")
+    .query(sql, sqlValues)
     .then((data) => {
       const cocktails = data[0];
       res.status(200).json(cocktails);
