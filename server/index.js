@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.APP_PORT || 5000;
 app.use(express.json());
+const cookieParser = require('cookie-parser');
 
 const router = require('./router');
 app.use(router);
