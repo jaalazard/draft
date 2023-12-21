@@ -8,7 +8,7 @@ const wait = function (duration = 1000) {
 };
 
 const Form = () => {
-  const { register, handleSubmit, formState, formState: { errors } } = useForm({
+  const { register, handleSubmit, watch, setValue, formState, formState: { errors } } = useForm({
     mode: "onTouched",
   });
   const { isSubmitting, isSubmitted, isSubmitSuccessful } = formState;
@@ -16,10 +16,13 @@ const Form = () => {
 
   const onSubmit = async (data) => {
     await wait(2000);
+
+  setValue('welcomeMessage', `Bienvenue, ${data.firstname} ${data.lastname} !`);
   };
 
-  console.log(errors);
+  const welcomeMessage = watch('welcomeMessage', '');
 
+  
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -44,8 +47,7 @@ const Form = () => {
           {...register("lastname", { required: 'need your lastname', minLength: { value: 3, message: "need more cara!"} })}
         />
                 {errors.lastname && ( <span>{errors.lastname.message}</span>)}
-
-
+<p>{welcomeMessage}</p>
         <button disabled={isSubmitting} type="submit">Submit</button>
       </form>
     </>
