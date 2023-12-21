@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import "./main.css";
 import { useAuth } from "../../server/contexts/AuthContext";
+import Form from "./components/Form";
 
 function App() {
   const { isLoggedIn } = useAuth();
   const [cocktails, setCocktails] = useState([]);
   const [thisCocktail, setThisCocktail] = useState(null);
 
-  if (!isLoggedIn) {
+  /* if (!isLoggedIn) {
     return <Navigate to="/login" />;
-  }
+  } */
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <>
+    <div>
       <h1 className="text-3xl underline bg-dark">Coucou le front</h1>
       <button onClick={getAllCocktails}>
         Cliquez ici pour récupérer les cocktails
@@ -86,6 +88,11 @@ function App() {
           {/* Affichez d'autres détails du cocktail ici */}
         </div>
       )}
+      </div>
+      <div>
+        <h1>Mon formulaire react hook form</h1>
+        <Form />
+      </div>
     </>
   );
 }
